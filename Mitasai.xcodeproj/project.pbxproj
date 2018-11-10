@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710DDDA921951655005C8633 /* DetailHonkiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710DDDA821951655005C8633 /* DetailHonkiViewController.swift */; };
 		7123A74821798A4E00E1EEFF /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7123A74721798A4E00E1EEFF /* RankViewController.swift */; };
 		714099E8219310690059D77F /* RankInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714099E7219310690059D77F /* RankInformationViewController.swift */; };
 		714099EA219310830059D77F /* FeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714099E9219310830059D77F /* FeatureViewController.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		35358C53051BA547CBED1227 /* Pods_Mitasai.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mitasai.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		710DDDA821951655005C8633 /* DetailHonkiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHonkiViewController.swift; sourceTree = "<group>"; };
 		7123A74721798A4E00E1EEFF /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
 		714099E7219310690059D77F /* RankInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankInformationViewController.swift; sourceTree = "<group>"; };
 		714099E9219310830059D77F /* FeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				71BA705A21620C2F00571364 /* TimetableViewController.swift */,
 				71C6648221819D62001B0868 /* DetailStageViewController.swift */,
 				714099E9219310830059D77F /* FeatureViewController.swift */,
+				710DDDA821951655005C8633 /* DetailHonkiViewController.swift */,
 				714099EF219316E20059D77F /* MitazitsuData.swift */,
 				715E824F214E2B4200D9E6FD /* LocalCollection.swift */,
 				717D7C1C211A6D050008E86C /* Main.storyboard */,
@@ -281,6 +284,7 @@
 				715E8260215E21DE00D9E6FD /* DetailViewController.swift in Sources */,
 				715E8250214E2B4200D9E6FD /* LocalCollection.swift in Sources */,
 				714099E8219310690059D77F /* RankInformationViewController.swift in Sources */,
+				710DDDA921951655005C8633 /* DetailHonkiViewController.swift in Sources */,
 				71BA706321634AD300571364 /* HomeViewController.swift in Sources */,
 				71BA705B21620C2F00571364 /* TimetableViewController.swift in Sources */,
 				71BA705D2162139B00571364 /* StageData.swift in Sources */,
@@ -429,6 +433,7 @@
 			baseConfigurationReference = 7884C3A51F07367A4BD3667D /* Pods-Mitasai.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FN5GG5252U;
 				INFOPLIST_FILE = Mitasai/Info.plist;
@@ -448,6 +453,7 @@
 			baseConfigurationReference = 9F44D0798B990D586864904B /* Pods-Mitasai.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FN5GG5252U;
 				INFOPLIST_FILE = Mitasai/Info.plist;

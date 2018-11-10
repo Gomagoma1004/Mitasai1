@@ -86,5 +86,8 @@ class DetailStageViewController: UIViewController, MKMapViewDelegate{
             }
         }
     }
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
 }

@@ -27,6 +27,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var toVoteButton: UIButton!
     @IBOutlet weak var foodHeight: NSLayoutConstraint!
     @IBOutlet weak var foodStack: UIStackView!
+    @IBAction func BackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     private var countStacks: Int = 1250
     

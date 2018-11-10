@@ -34,7 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return pickerView
     }()
     
-    private let searchOptions = ["座って休憩したい","案内所に行きたい","トイレに行きたい","ごみを捨てたい","グッツを買いたい"]
+    private let searchOptions = ["座って休憩したい","案内所に行きたい","グッツを買いたい"]
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return searchOptions.count
@@ -64,10 +64,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             dropPin(selectedArray: coordinate.restPlace)
         case 1:
             dropPin(selectedArray: coordinate.informationPlace)
-        case 2:
-            dropPin(selectedArray: coordinate.toiletPlace)
-        case 3:
-            dropPin(selectedArray: coordinate.garbagePlace)
         default:
             dropPin(selectedArray: coordinate.goodsPlace)
         }

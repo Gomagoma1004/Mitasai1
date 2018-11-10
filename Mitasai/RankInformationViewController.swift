@@ -11,7 +11,11 @@ import MapKit
 
 class RankInformationViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
-   
+
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -47,6 +47,9 @@ class VoteViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         return profileOptions.count
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     // MARK: - UIPickerViewDelegate
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent: Int) -> String? {
@@ -191,8 +194,6 @@ class VoteViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         
     }
     
-    @IBAction func backButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
+
 }
 

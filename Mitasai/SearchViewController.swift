@@ -148,6 +148,9 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         performSegue(withIdentifier: "toDetailViewController", sender: nil)
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension SearchViewController: FilterViewControllerDelegate {
@@ -192,21 +195,21 @@ extension SearchViewController: FilterViewControllerDelegate {
             nameFilterLabel.text = name + " "
             nameFilterLabel.isHidden = false
         } else {
-            nameFilterLabel.text = "選択なし"
+            nameFilterLabel.text = " "
         }
         
         if let category = category, !category.isEmpty {
             categoryFilterLabel.text = category + " "
             categoryFilterLabel.isHidden = false
         } else {
-            categoryFilterLabel.text = "選択なし"
+            categoryFilterLabel.text = " "
         }
         
         if let place = place, !place.isEmpty {
             placeFilterLabel.text = place + " "
             placeFilterLabel.isHidden = false
         } else {
-            placeFilterLabel.text = "選択なし"
+            placeFilterLabel.text = " "
         }
         
         self.query = filtered

@@ -77,7 +77,7 @@ class FilterViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDa
         nameTextField.text = ""
     }
     
-    private let placeOptions = ["中庭","南校舎","第一校舎","西校舎","ステージ","ミニステージ","演舞場","リング"]
+    private let placeOptions = ["中庭","南校舎","第1校舎","西校舎","ステージ","ミニステージ","演舞場","リング"]
     private let categoryOptions = ["食事","喫茶","講演会","演奏","パフォーマンス","展示","体験","ゼミ発表"]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

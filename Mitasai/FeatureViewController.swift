@@ -33,8 +33,28 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
         guruguruMapView.isRotateEnabled = false
         dropPin(selectedArray: coordinate.guruguruPlace)
         
+        fukubikiMap.delegate = self
+        let location2:CLLocationCoordinate2D
+            = CLLocationCoordinate2DMake(35.648918, 139.742779)
+        guruguruMapView.setCenter(location,animated:true)
+        var region2:MKCoordinateRegion = guruguruMapView.region
+        region2.center = location2
+        region2.span.latitudeDelta = 0.003
+        region2.span.longitudeDelta = 0.003
+        fukubikiMap.setRegion(region2,animated:true)
+        
+        fukubikiMap.mapType = MKMapType.standard
+        fukubikiMap.isRotateEnabled = false
+        myPin.title = "福引テント"
+        myPin.coordinate = CLLocationCoordinate2DMake(35.649333, 139.742339)
+        fukubikiMap.addAnnotation(myPin)
     }
-
+// 福引用
+    
+    @IBOutlet weak var fukubikiMap: MKMapView!
+    let myPin: MKPointAnnotation = MKPointAnnotation()
+    
+    
 // 本部企画局用実装
 //  tableVeiwの実装
     @IBOutlet weak var tableView: UITableView!
@@ -103,6 +123,18 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopObserving()
+    }
+    
+    var sendHonkiData: MitazitsuData?
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toDetailHonkiViewController") {
+            let detailStageViewController = segue.destination as! DetailHonkiViewController
+            detailStageViewController.honkiData = sendHonkiData
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendHonkiData = mitazitsuData[indexPath.row]
     }
     
 // ぐるぐるグルメ用実装

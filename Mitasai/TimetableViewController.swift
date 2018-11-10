@@ -166,7 +166,7 @@ class TimetableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func mainStageButton(_ sender: Any) {
         selectedStage = "ステージ"
-        miniStage.setImage(UIImage(named: "メインステージ"), for: .normal)
+        mainStage.setImage(UIImage(named: "メインステージ"), for: .normal)
         miniStage.setImage(UIImage(named: "ミニステージグレー"), for: .normal)
         enbu.setImage(UIImage(named: "演舞場グレー"), for: .normal)
         ring.setImage(UIImage(named: "リンググレー"), for: .normal)

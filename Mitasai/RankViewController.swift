@@ -67,6 +67,10 @@ class RankViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return circleData.count
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RankingCell", for: indexPath) as! CircleDataCell
         
