@@ -57,6 +57,8 @@ class HomeViewController: UIViewController {
             self.mogitenButton.alpha = 1.0
             self.questionnaireButton.alpha = 1.0
         })
+        
+        
     }
     
     @IBAction func mogitenActionButton(_ sender: Any) {

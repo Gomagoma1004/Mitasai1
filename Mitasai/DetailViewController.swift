@@ -118,6 +118,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var stackview1: UIView!
     @IBOutlet weak var stackview2: UIView!
     @IBOutlet weak var stackview3: UIView!
+    @IBOutlet weak var voteBackgroundView: UIView!
     
     
     func judgeVoteButton(place: String, vote: Int) {
@@ -126,11 +127,13 @@ class DetailViewController: UIViewController {
             stackview1.isHidden = false
             stackview2.isHidden = false
             stackview3.isHidden = false
+            voteBackgroundView.isHidden = false
         } else {
             toVoteButton.isHidden = true
             stackview1.isHidden = true
             stackview2.isHidden = true
             stackview3.isHidden = true
+            voteBackgroundView.isHidden = true
         }
     }
     

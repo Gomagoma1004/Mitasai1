@@ -34,7 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return pickerView
     }()
     
-    private let searchOptions = ["座って休憩したい","案内所に行きたい","グッツを買いたい"]
+    private let searchOptions = ["座って休憩したい","案内所に行きたい","グッズを買いたい"]
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return searchOptions.count

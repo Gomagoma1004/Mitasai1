@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import MapKit
+import youtube_ios_player_helper
 
 class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
     
@@ -48,6 +49,8 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
         myPin.title = "福引テント"
         myPin.coordinate = CLLocationCoordinate2DMake(35.649333, 139.742339)
         fukubikiMap.addAnnotation(myPin)
+        
+        youtube.load(withVideoId: "22PItY4imGE")
     }
 // 福引用
     
@@ -86,7 +89,7 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     var listener: ListenerRegistration?
     func baseQuery() -> Query {
-        return Firestore.firestore().collection("Mitazitsudata")
+        return Firestore.firestore().collection("Mitazitsudata").order(by: "sort", descending: false)
     }
     func observeQuery() {
         guard let query = query else { return }
@@ -134,8 +137,23 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sendHonkiData = mitazitsuData[indexPath.row]
+        if mitazitsuData[indexPath.row].url.isEmpty {
+            sendHonkiData = mitazitsuData[indexPath.row]
+            performSegue(withIdentifier: "toDetailHonkiViewController", sender: nil)
+        } else {
+            let url = URL(string: mitazitsuData[indexPath.row].url)!
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
     }
+    
+//  オフィシャルソング
+    
+    @IBOutlet weak var youtube: YTPlayerView!
+    
+
+    
     
 // ぐるぐるグルメ用実装
     @IBOutlet weak var guruguruMapView: MKMapView!
@@ -157,7 +175,22 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
 }
 
 class honkiCell: UITableViewCell {
-    func populate(mitazitsuData: MitazitsuData) {
     
+    @IBOutlet weak var cellImage: UIImageView!
+    
+    func populate(mitazitsuData: MitazitsuData) {
+        
+        let storage = Storage.storage()
+        var imageRef: StorageReference?
+        imageRef = storage.reference().child(mitazitsuData.cellImage)
+        
+        imageRef?.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                self.cellImage.image = UIImage(named: "naimage.png")
+            } else {
+                self.cellImage.image = UIImage(data: data!)
+            }
+        }
     }
 }
