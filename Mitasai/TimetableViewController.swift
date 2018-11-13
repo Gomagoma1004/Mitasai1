@@ -261,6 +261,10 @@ class stageCell: UITableViewCell {
             categoryImage.image = UIImage(named: "体験")
         case "講演会":
             categoryImage.image = UIImage(named: "講演会")
+        case "ゼミ発表":
+            categoryImage.image = UIImage(named: "ゼミ発表")
+        case "喫茶":
+            categoryImage.image = UIImage(named: "喫茶")
         default:
             categoryImage.image = UIImage(named: "パフォーマンス")
         }

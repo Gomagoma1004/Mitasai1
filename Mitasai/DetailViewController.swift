@@ -27,9 +27,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var toVoteButton: UIButton!
     @IBOutlet weak var foodHeight: NSLayoutConstraint!
     @IBOutlet weak var foodStack: UIStackView!
-    @IBAction func BackButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
     
     private var countStacks: Int = 1250
     
@@ -37,7 +34,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     @IBOutlet weak var usedFoodUpperLabel: UILabel!
@@ -66,10 +62,7 @@ class DetailViewController: UIViewController {
             
             judgeVoteButton(place: circleData.place, vote: circleData.vote)
             
-            
         }
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,6 +93,10 @@ class DetailViewController: UIViewController {
             categoryImage.image = UIImage(named: "体験")
         case "講演会":
             categoryImage.image = UIImage(named: "講演会")
+        case "ゼミ発表":
+            categoryImage.image = UIImage(named: "ゼミ発表")
+        case "喫茶":
+            categoryImage.image = UIImage(named: "喫茶")
         default:
             categoryImage.image = UIImage(named: "パフォーマンス")
         }

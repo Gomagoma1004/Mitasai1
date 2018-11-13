@@ -34,7 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return pickerView
     }()
     
-    private let searchOptions = ["座って休憩したい","案内所に行きたい","グッズを買いたい"]
+    private let searchOptions = ["座って休憩したい","案内所に行きたい","グッズを買いたい","トイレに行きたい","がっつり食べたい!","喉乾いた","甘いものが欲しくなった","ゼミの発表はどこでやっているの？","タバコを吸いたい"]
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return searchOptions.count
@@ -64,14 +64,29 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             dropPin(selectedArray: coordinate.restPlace)
         case 1:
             dropPin(selectedArray: coordinate.informationPlace)
-        default:
+        case 2:
             dropPin(selectedArray: coordinate.goodsPlace)
+        case 3:
+            dropPin(selectedArray: coordinate.toiletPlace)
+        case 4:
+            dropPin(selectedArray: coordinate.gattsuriPlace)
+        case 5:
+            dropPin(selectedArray: coordinate.nodoPlace)
+        case 6:
+            dropPin(selectedArray: coordinate.amaimonoPlace)
+        case 7:
+            dropPin(selectedArray: coordinate.zemiPlace)
+        default:
+            dropPin(selectedArray: coordinate.tabakoPlace)
         }
         searchTextField.resignFirstResponder()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        campasButton.setImage(UIImage(named: "キャンパスへ"), for: .highlighted)
+        nowPlaceButton.setImage(UIImage(named: "現在位置"), for: .highlighted)
         
         let toolBar = UIToolbar(frame: CGRect(x: 0.0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 50))
         toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
@@ -144,7 +159,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             judgePlace(place: circleData.place, p: circleData.p)
             myPin.coordinate = CLLocationCoordinate2DMake(myLatitude!, myLongitude!)
             myPin.title = circleData.name
-            myPin.subtitle = circleData.planName
+            myPin.subtitle = circleData.place + circleData.detailPlace
             mapView.addAnnotation(myPin)
             appDelegate.appDelegateCircleData = nil
             self.circleData = nil
@@ -178,7 +193,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         case "第1校舎":
             myLongitude = 139.742838
-            myLatitude = 335.649224
+            myLatitude = 35.649224
         case "南校舎":
             myLongitude = 139.743176
             myLatitude = 35.648360
@@ -189,8 +204,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             myLongitude = 139.742843
             myLatitude = 35.648605
         case "ミニステージ":
-            myLongitude = 139.7428
-            myLatitude = 35.648964
+            myLongitude = 139.742194
+            myLatitude = 35.648975
         case "演舞場":
             myLongitude = 139.743717
             myLatitude = 35.649241
@@ -207,6 +222,38 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.didReceiveMemoryWarning()
         
     }
+    
+    @IBAction func toNowPlaceButton(_ sender: Any) {
+        let lati = locationManeger.location?.coordinate.latitude
+        let long = locationManeger.location?.coordinate.longitude
+        let location:CLLocationCoordinate2D?
+        if let lati = lati, let long = long {
+            location = CLLocationCoordinate2DMake(lati,long)
+        } else {
+            location = CLLocationCoordinate2DMake(35.648964,139.7428)
+        }
+        mapView.setCenter(location!,animated:true)
+        var region:MKCoordinateRegion = mapView.region
+        region.center = location!
+        region.span.latitudeDelta = 0.0035
+        region.span.longitudeDelta = 0.0035
+        mapView.setRegion(region,animated:true)
+    }
+    
+    @IBAction func toCampasButton(_ sender: Any) {
+        let location:CLLocationCoordinate2D
+            = CLLocationCoordinate2DMake(35.648964,139.7428)
+        mapView.setCenter(location,animated:true)
+        var region:MKCoordinateRegion = mapView.region
+        region.center = location
+        region.span.latitudeDelta = 0.0035
+        region.span.longitudeDelta = 0.0035
+        mapView.setRegion(region,animated:true)
+        
+    }
+    
+    @IBOutlet weak var campasButton: UIButton!
+    @IBOutlet weak var nowPlaceButton: UIButton!
     
 }
 

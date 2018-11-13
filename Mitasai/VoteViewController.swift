@@ -29,6 +29,7 @@ class VoteViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         }
     }
     
+    @IBOutlet weak var tanukiImage: UIImageView!
     
     private let profileOptions = ["慶應生","来場者"]
     
@@ -47,10 +48,7 @@ class VoteViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         return profileOptions.count
     }
     
-    @IBAction func backButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    // MARK: - UIPickerViewDelegate
+// MARK: - UIPickerViewDelegate
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent: Int) -> String? {
         return profileOptions[row]
@@ -95,23 +93,10 @@ class VoteViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         compareDate()
-        if FirstForm == true {
-            let lastVoteCount = userDefaults.object(forKey: "vote") as! Int
-            if lastVoteCount == 1 {
-                if let circleData = getCircleData {
-                    if profile == "慶應生" {
-                        newVote = circleData.vote + 1
-                    } else {
-                        newVote = circleData.vote + 2
-                    }
-                    DocumentPath = circleData.name
-                    VoteRef = Ref.document(DocumentPath!)
-                }
-            } else {
-                voteButton.isHidden = true
-                label.text = "投票ありがとうございました！"
-            }
-        } else if SecondForm == true {
+        if FourthForm! {
+            voteButton.isHidden = true
+            label.text = "中庭模擬店大賞は終了しました！"
+        } else if ThirdForm! {
             let lastVoteCount = userDefaults.object(forKey: "H3Vote") as! Int
             if lastVoteCount == 1 {
                 if let circleData = getCircleData {
@@ -126,10 +111,29 @@ class VoteViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
             } else {
                 voteButton.isHidden = true
                 label.text = "投票ありがとうございました！"
+                tanukiImage.image = UIImage(named: "正面からお辞儀するみたぬき")
+            }
+        } else if SecondForm! {
+            let lastVoteCount = userDefaults.object(forKey: "vote") as! Int
+            if lastVoteCount == 1 {
+                if let circleData = getCircleData {
+                    if profile == "慶應生" {
+                        newVote = circleData.vote + 1
+                    } else {
+                        newVote = circleData.vote + 2
+                    }
+                    DocumentPath = circleData.name
+                    VoteRef = Ref.document(DocumentPath!)
+                }
+            } else {
+                voteButton.isHidden = true
+                tanukiImage.image = UIImage(named: "正面からお辞儀するみたぬき")
+                label.text = "投票ありがとうございました！"
             }
         } else {
             voteButton.isHidden = true
-            label.text = "中庭模擬店大賞は終了しました！"
+            tanukiImage.image = UIImage(named: "正面からお辞儀するみたぬき")
+            label.text = "投票は本祭中に行えます"
         }
     }
     
@@ -138,32 +142,44 @@ class VoteViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         // Dispose of any resources that can be recreated.
     }
     
-    var FirstForm: Bool?
-    var SecondForm: Bool?
-    var ThirdForm: Bool?
-    
+    //    日付処理
     let today = Date()
     var calendar = Calendar.current
     let dateFormatter = DateFormatter()
     
+    var FirstForm: Bool?
+    var SecondForm: Bool?
+    var ThirdForm: Bool?
+    var FourthForm: Bool?
+    
     func compareDate() {
-        let H3 = calendar.date(from: DateComponents(year:2018, month:10, day: 20, hour: 0))
-        let H4 = calendar.date(from: DateComponents(year:2018, month:11, day: 25, hour: 13))
-        let compareSecondeChange = today > H3!
+        let H1 = calendar.date(from: DateComponents(year:2018, month:11, day: 22, hour: 9, minute: 30, second: 0))
+        let H3 = calendar.date(from: DateComponents(year:2018, month:11, day: 24, hour: 0, minute: 0, second: 0))
+        let H4 = calendar.date(from: DateComponents(year:2018, month:11, day: 25, hour: 13, minute: 0, second: 0))
+        let compareFirstChange = today > H1!
+        let compareSecondChange = today > H3!
         let compareThirdChange = today > H4!
         
-        if compareSecondeChange == false && compareThirdChange == false {
-            FirstForm = true
+        if compareThirdChange {
+            FirstForm = false
             SecondForm = false
             ThirdForm = false
-        } else if compareSecondeChange == true && compareThirdChange == false {
-            FirstForm = false
-            SecondForm = true
-            ThirdForm = false
-        } else {
+            FourthForm = true
+        } else if compareSecondChange {
             FirstForm = false
             SecondForm = false
             ThirdForm = true
+            FourthForm = false
+        } else if compareFirstChange {
+            FirstForm = false
+            SecondForm = true
+            ThirdForm = false
+            FourthForm = false
+        } else {
+            FirstForm = true
+            SecondForm = false
+            ThirdForm = false
+            FourthForm = false
         }
     }
     

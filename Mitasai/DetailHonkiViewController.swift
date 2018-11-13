@@ -11,16 +11,20 @@ import FirebaseStorage
 
 class DetailHonkiViewController: UIViewController {
     
+    let scrollViewHeight: CGFloat = 5000
+    @IBOutlet weak var heightView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var honkiData: MitazitsuData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        heightView.frame.size.height = 5000
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        populate(mitazitsuData: honkiData!)
         
     }
     
@@ -34,12 +38,9 @@ class DetailHonkiViewController: UIViewController {
     @IBOutlet weak var participantsStack: UIStackView!
     @IBOutlet weak var participantsLabel: UILabel!
     
+
     
     
-    
-    @IBAction func backButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
     
     let storage = Storage.storage()
     var imageRef: StorageReference?
@@ -50,6 +51,8 @@ class DetailHonkiViewController: UIViewController {
             guestStack.isHidden = false
         } else {
             guestStack.isHidden = true
+            guestStack.frame.size.height = 0
+
         }
         
         if !mitazitsuData.participants.isEmpty {
@@ -57,6 +60,7 @@ class DetailHonkiViewController: UIViewController {
             participantsStack.isHidden = false
         } else {
             participantsStack.isHidden = true
+            participantsStack.frame.size.height = 0
         }
 
         planName.text = mitazitsuData.planName

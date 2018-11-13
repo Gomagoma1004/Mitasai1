@@ -73,6 +73,4 @@ extension CircleData: DocumentSerializable {
                   detailPlace: detailPlace,
                   p: p)
     }
-    
-    
 }

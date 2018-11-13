@@ -61,6 +61,7 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
 // 本部企画局用実装
 //  tableVeiwの実装
     @IBOutlet weak var tableView: UITableView!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mitazitsuData.count
     }
@@ -71,7 +72,7 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 79
+        return  100
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -89,7 +90,7 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     var listener: ListenerRegistration?
     func baseQuery() -> Query {
-        return Firestore.firestore().collection("Mitazitsudata").order(by: "sort", descending: false)
+        return Firestore.firestore().collection("MitazitsuData")
     }
     func observeQuery() {
         guard let query = query else { return }
@@ -129,6 +130,7 @@ class FeatureViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     var sendHonkiData: MitazitsuData?
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toDetailHonkiViewController") {
             let detailStageViewController = segue.destination as! DetailHonkiViewController
@@ -187,7 +189,7 @@ class honkiCell: UITableViewCell {
         imageRef?.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
-                self.cellImage.image = UIImage(named: "naimage.png")
+                self.cellImage.image = UIImage(named: "naimgae")
             } else {
                 self.cellImage.image = UIImage(data: data!)
             }

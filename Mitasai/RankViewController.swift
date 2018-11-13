@@ -67,10 +67,6 @@ class RankViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return circleData.count
     }
     
-    @IBAction func backButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RankingCell", for: indexPath) as! CircleDataCell
         
@@ -78,9 +74,7 @@ class RankViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let CellcircleData = circleData[indexPath.row]
         cell.populate(circleData: CellcircleData)
         
-        if FirstForm! {
-            cell.RankImage.image = nil
-        } else {
+        if FourthForm! {
             if indexPath.row == 0 {
                 cell.RankImage.image = UIImage(named: "1位")
             } else if indexPath.row == 1 {
@@ -90,6 +84,8 @@ class RankViewController: UIViewController, UITableViewDataSource, UITableViewDe
             } else {
                 cell.RankImage.image = nil
             }
+        } else {
+            cell.RankImage.image = nil
         }
         
         switch CellcircleData.p {
@@ -153,7 +149,7 @@ class RankViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     func baseQuery() -> Query {
-        if FirstForm == true {
+        if SecondForm == true {
             return Firestore.firestore().collection("data").whereField("p", isEqualTo: areaChack).order(by: "vote", descending: true)
         } else {
             return Firestore.firestore().collection("data").order(by: "vote", descending: true)
@@ -189,8 +185,6 @@ class RankViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //   初期画面処理
     override func viewDidLoad() {
         super.viewDidLoad()
-        compareDate()
-        
         
         query = baseQuery()
         tableView.delegate = self
@@ -201,6 +195,14 @@ class RankViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         observeQuery()
+        compareDate()
+        if ThirdForm! || FourthForm! {
+            segmentHeight.constant = 0
+            segmentControl.isHidden = true
+        } else {
+            segmentHeight.constant = 30
+            segmentControl.isHidden = false
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -226,25 +228,36 @@ class RankViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var FirstForm: Bool?
     var SecondForm: Bool?
     var ThirdForm: Bool?
+    var FourthForm: Bool?
     
     func compareDate() {
+        let H1 = calendar.date(from: DateComponents(year:2018, month:11, day: 22, hour: 9, minute: 30, second: 0))
         let H3 = calendar.date(from: DateComponents(year:2018, month:11, day: 24, hour: 0, minute: 0, second: 0))
         let H4 = calendar.date(from: DateComponents(year:2018, month:11, day: 25, hour: 13, minute: 0, second: 0))
-        let compareSecondeChange = today > H3!
+        let compareFirstChange = today > H1!
+        let compareSecondChange = today > H3!
         let compareThirdChange = today > H4!
         
-        if compareSecondeChange == false && compareThirdChange == false {
-            FirstForm = true
+        if compareThirdChange {
+            FirstForm = false
             SecondForm = false
             ThirdForm = false
-        } else if compareSecondeChange == true && compareThirdChange == false {
-            FirstForm = false
-            SecondForm = true
-            ThirdForm = false
-        } else {
+            FourthForm = true
+        } else if compareSecondChange {
             FirstForm = false
             SecondForm = false
             ThirdForm = true
+            FourthForm = false
+        } else if compareFirstChange {
+            FirstForm = false
+            SecondForm = true
+            ThirdForm = false
+            FourthForm = false
+        } else {
+            FirstForm = true
+            SecondForm = false
+            ThirdForm = false
+            FourthForm = false
         }
     }
     

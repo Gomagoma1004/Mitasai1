@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userDefaults.set(1, forKey: "H3Vote")
         userDefaults.synchronize()
         
+        UINavigationBar.appearance().tintColor = UIColor(red: 0.439, green: 0.737, blue: 0.678, alpha: 1.0)
         return true
     }
     

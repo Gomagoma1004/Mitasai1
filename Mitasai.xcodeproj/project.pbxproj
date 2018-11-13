@@ -29,6 +29,7 @@
 		71BA70672165189900571364 /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BA70662165189900571364 /* VoteViewController.swift */; };
 		71BA7069216530A800571364 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BA7068216530A800571364 /* MapViewController.swift */; };
 		71C6648321819D62001B0868 /* DetailStageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C6648221819D62001B0868 /* DetailStageViewController.swift */; };
+		71F72082219AA6DC00BBE553 /* selectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F72081219AA6DC00BBE553 /* selectViewController.swift */; };
 		CB0EAEA83449DF65E2DEEC64 /* Pods_Mitasai.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35358C53051BA547CBED1227 /* Pods_Mitasai.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		71BA70662165189900571364 /* VoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
 		71BA7068216530A800571364 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		71C6648221819D62001B0868 /* DetailStageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStageViewController.swift; sourceTree = "<group>"; };
+		71F72081219AA6DC00BBE553 /* selectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectViewController.swift; sourceTree = "<group>"; };
 		7884C3A51F07367A4BD3667D /* Pods-Mitasai.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mitasai.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mitasai/Pods-Mitasai.debug.xcconfig"; sourceTree = "<group>"; };
 		9F44D0798B990D586864904B /* Pods-Mitasai.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mitasai.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mitasai/Pods-Mitasai.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 				71BA70562160E41D00571364 /* SearchViewController.swift */,
 				71BA70582161145300571364 /* FilterViewController.swift */,
 				715E825F215E21DE00D9E6FD /* DetailViewController.swift */,
+				71F72081219AA6DC00BBE553 /* selectViewController.swift */,
 				7123A74721798A4E00E1EEFF /* RankViewController.swift */,
 				714099E7219310690059D77F /* RankInformationViewController.swift */,
 				71BA70662165189900571364 /* VoteViewController.swift */,
@@ -280,6 +283,7 @@
 				714099EC219311670059D77F /* Coordinate.swift in Sources */,
 				71BA70592161145300571364 /* FilterViewController.swift in Sources */,
 				717D7C19211A6D050008E86C /* AppDelegate.swift in Sources */,
+				71F72082219AA6DC00BBE553 /* selectViewController.swift in Sources */,
 				71BA70572160E41D00571364 /* SearchViewController.swift in Sources */,
 				71BA7069216530A800571364 /* MapViewController.swift in Sources */,
 				71C6648321819D62001B0868 /* DetailStageViewController.swift in Sources */,
@@ -367,7 +371,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -421,7 +425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
